@@ -1,1 +1,1 @@
-# Wear-a-mask
+# wear-a-mask
