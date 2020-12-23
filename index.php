@@ -15,7 +15,6 @@
 <input type="text" name="last_name" placeholder="Last Name" required />
 <input type="text" name="email" placeholder="Email" required />
 <input type="text" name="store" placeholder="Store" required />
-<input type="text" name="date" placeholder="Date" required />
 <button type="submit">Add &nbsp; <span>&#43;</span></button>
 
 </form>
