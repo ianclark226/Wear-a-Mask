@@ -36,10 +36,22 @@ require 'db.php';
 
 <?php while($slackers = $slacker->fetch(PDO::FETCH_ASSOC)) { ?>
 
-<div class="slacket-item">
-<input type="checkbox">
+<div class="slacker-item">
+    <span id="<?php echo $slackers['id']; ?>"
+    class="remove-slacker">x</span>
+    <?php if($slackers['checked']){ ?>
+        <input type="checkbox"
+        class="check-box"
+        checked />
+<h2 class="checked"><?php echo $slackers['first_name'], $slackers['last_name'], $slackers['email'], $slackers['store']?></h2>
+
+        <?php }else { ?>
+            <input type="checkbox"
+        class="check-box"/>
 <h2><?php echo $slackers['first_name'], $slackers['last_name'], $slackers['email'], $slackers['store']?></h2>
-<small>na</small>
+            <?php } ?>
+        <br>
+        <small>created: <?php echo $slackers['date'] ?> </small>
 </div>
 <?php } ?>
 </div>
