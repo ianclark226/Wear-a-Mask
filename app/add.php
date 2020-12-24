@@ -14,5 +14,16 @@ if(isset($_POST['first_name'], $_POST['last_name'], $_POST['email'], $_POST['sto
         $stmt = $conn->prepare("INSERT INTO slacker(first_name, last_name, email, store) VALUES(:first_name, :last_name, :email, :store)");
         $stmt->execute(array (':first_name' => $first_name,':last_name' => $last_name,':email' => $email,':store' => $store
     ));
+
+    if($stmt){
+        header("Location: ../index.php?mess=success"); 
+    }else {
+        header("Location: ../index.php");
     }
+    $conn = null;
+    exit();
+    }
+    
+} else {
+    header("Location: ../index.php?mess=error");
 }
