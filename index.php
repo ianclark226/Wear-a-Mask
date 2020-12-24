@@ -6,21 +6,30 @@ require 'db.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/styles.css">
     <title>Wear a Mask</title>
 </head>
 <body>
 
 <div class="main-section">
 <div class="add-section">
-<form action="">
-<input type="text" name="first_name" placeholder="First Name" required />
-<input type="text" name="last_name" placeholder="Last Name" required />
-<input type="text" name="email" placeholder="Email" required />
-<input type="text" name="store" placeholder="Store" required />
-<button type="submit">Add &nbsp; <span>&#43;</span></button>
+<form action="app/add.php" method="POST" autocomplete="off">
+             <?php if(isset($_GET['mess']) && $_GET['mess'] == 'error'){ ?>
+                error
+                <input type="text" name="first_name" style="border-color: #ff6666" placeholder="First Name"  />
+<input type="text" name="last_name" placeholder="Last Name"  />
+<input type="text" name="email" placeholder="Email"  />
+<input type="text" name="store" placeholder="Store"  />
+              <button type="submit">Add &nbsp; <span>&#43;</span></button>
 
-</form>
+             <?php }else{ ?>
+                <input type="text" name="first_name" placeholder="what?"  />
+<input type="text" name="last_name" placeholder="Last Name"  />
+<input type="text" name="email" placeholder="Email"  />
+<input type="text" name="store" placeholder="Store"  />
+              <button type="submit">Add &nbsp; <span>&#43;</span></button>
+             <?php } ?>
+          </form>
 </div>
 <?php 
     $slacker = $conn->query("SELECT * FROM slacker ORDER BY id DESC");
