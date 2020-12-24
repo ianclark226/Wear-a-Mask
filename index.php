@@ -52,11 +52,13 @@ require 'db.php';
     <?php if($slackers['checked']){ ?>
         <input type="checkbox"
         class="check-box"
+        data-slacker-id="<?php echo $slackers['id']; ?>"
         checked />
 <h2 class="checked"><?php echo $slackers['first_name'], $slackers['last_name'], $slackers['email'], $slackers['store']?></h2>
 
         <?php }else { ?>
             <input type="checkbox"
+            data-slacker-id="<?php echo $slackers['id']; ?>"
         class="check-box"/>
 <h2><?php echo $slackers['first_name'], $slackers['last_name'], $slackers['email'], $slackers['store']?></h2>
             <?php } ?>
@@ -85,6 +87,27 @@ $(document).ready(function() {
             }
         }
         );
+    })
+
+    $(".check-box").click(function(e) {
+        const id = $(this).attr('data-slacker-id')
+
+        $.post('app/check.php',
+        {
+            id: id
+        },
+        (data) => {
+            if(data !=='error'){
+                const h2 = $(this).next();
+                if(data === '1'){
+                    h2.removeClass('checked');
+                    
+                }else {
+                    h2.addClass('checked');
+                }
+            }
+        }
+        )
     })
 })
     </script>
