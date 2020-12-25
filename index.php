@@ -73,43 +73,42 @@ require 'db.php';
 </div>
     
 <script>
-$(document).ready(function() {
-    $('.remove-slacker').click(function() {
-        const id = $(this).attr('id');
+        $(document).ready(function(){
+            $('.remove-slacker').click(function(){
+                const id = $(this).attr('id');
+                
+                $.post("app/remove.php", 
+                      {
+                          id: id
+                      },
+                      (data)  => {
+                         if(data){
+                             $(this).parent().hide(600);
+                         }
+                      }
+                );
+            });
 
-        $.post("app/remove.php",
-        {
-            id: id
-        },
-        (data) => {
-            if(data) {
-                $(this).parent().hide(600);
-            }
-        }
-        );
-    })
-
-    $(".check-box").click(function(e) {
-        const id = $(this).attr('data-slacker-id')
-
-        $.post('app/check.php',
-        {
-            id: id
-        },
-        (data) => {
-            if(data !=='error'){
-                const h2 = $(this).next();
-                if(data === '1'){
-                    h2.removeClass('checked');
-                    
-                }else {
-                    h2.addClass('checked');
-                }
-            }
-        }
-        )
-    })
-})
+            $(".check-box").click(function(e){
+                const id = $(this).attr('data-slacker-id');
+                
+                $.post('app/check.php', 
+                      {
+                          id: id
+                      },
+                      (data) => {
+                          if(data != 'error'){
+                              const h2 = $(this).next();
+                              if(data === '1'){
+                                  h2.removeClass('checked');
+                              }else {
+                                  h2.addClass('checked');
+                              }
+                          }
+                      }
+                );
+            });
+        });
     </script>
 </body>
 </html>

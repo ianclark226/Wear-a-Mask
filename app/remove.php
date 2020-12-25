@@ -4,24 +4,21 @@ if(isset($_POST['id'])){
     require '../db.php';
 
     $id = $_POST['id'];
-    
 
     if(empty($id)){
-        echo 0;
+       echo 0;
     }else {
-        $stmt = $conn->prepare("DELETE FROM slacker WHERE id=?)");
-        $stmt->execute([$id]);
-    
+        $stmt = $conn->prepare("DELETE FROM slacker WHERE id=?");
+        $res = $stmt->execute([$id]);
 
-    if($stmt){
-        echo 1; 
-    }else {
-        echo 0;
+        if($res){
+            echo 1;
+        }else {
+            echo 0;
+        }
+        $conn = null;
+        exit();
     }
-    $conn = null;
-    exit();
-    }
-    
-} else {
+}else {
     header("Location: ../index.php?mess=error");
 }
