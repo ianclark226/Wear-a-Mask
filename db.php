@@ -1,6 +1,6 @@
 <?php 
 
-$sName = "3306";
+$sName = "z3iruaadbwo0iyfp.cbetxkdyhwsb.us-east-1.rds.amazonaws.com";
 $uName = "igmlyd8htakal9xn";
 $pass = "nniy3j9tftqsoazp";
 $db_name = "o4tss27t3p9u0ssv";
