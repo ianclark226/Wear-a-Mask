@@ -1,3 +1,5 @@
+<!-- POST REQUEST -->
+
 <?php
 
 if(isset($_POST['first_name'], $_POST['last_name'], $_POST['email'], $_POST['store'])){
@@ -7,6 +9,8 @@ if(isset($_POST['first_name'], $_POST['last_name'], $_POST['email'], $_POST['sto
     $last_name = $_POST['last_name'];
     $email = $_POST['email'];
     $store = $_POST['store'];
+
+    // IF FIELD IS EMPTY, OUTPUT AN ERROR. IF FILLED, SUCCESS MESSAGE AND ADD TO DATABASE
 
     if(empty($first_name || $last_name || $email || $store)){
         header("Location: ../index.php?mess=error");

@@ -14,14 +14,17 @@ require 'db.php';
 <body>
 
 <div class="main-section">
-<h1 class=>Mask Tracker</h1>
+<h1>Mask Tracker</h1>
+<h3 style="color:#fff; text-align:center; padding:20px;">Due to Covid19 being at the lowest since the Pandemic has started in the USA, stores and businesses are ending thier mask mandate but be prepared for the next one 100 years from now. Feel free to add any slackers still.</h3>
 <img src="https://growth-management.alachuacounty.us/Content/images/mask.png" alt="Mask for app" srcset="">
 
+<!-- TIMER COUNTDOWN -->
+
 <?php 
-$date = date('2030-01-01');
+$date = date('3020-01-01');
 $time = date('12:00:00');
 $date_today = $date . ' ' . $time;
-echo "it will run till " .$date_today;
+
 ?>
 <script type="text/javascript">
 var count_id = "<?php echo $date_today; ?>";
@@ -33,11 +36,11 @@ var x = setInterval(function() {
     var distance = countDownDate - now;
 
     var days = Math.floor(distance/(1000 * 60 * 60 * 24));
-    var hours = Math.floor((distance%(1000*60*60*24))/(1000*60*60));
-    var minutes = Math.floor((distance%(1000*60*60))/(1000*60));
-    var seconds = Math.floor((distance%(1000*60))/1000);
+    var hours = Math.floor((distance%(1000 * 60 * 60 * 24))/(1000*60*60));
+    var minutes = Math.floor((distance%(1000 * 60 * 60))/(1000*60));
+    var seconds = Math.floor((distance%(1000 * 60))/1000);
 
-        document.getElementById("timer").innerHTML = days + "d" + hours + "h" + minutes + "m" + seconds + "s";
+    document.getElementById("timer").innerHTML = days + " Days " + hours + " Hours " + minutes + " Minutes " + seconds + " Seconds Left";
 
         if(distance<0) {
             clearInterval(x);
@@ -45,13 +48,13 @@ var x = setInterval(function() {
         }      
 },1000);
 </script>
-
 <?php 
 echo '<p id="timer" style="font-size:30px;"></p>'
 ?>
-<p>This is the countdown</p>
 <p class=>Insert the person that is not following the rules to mask wearing</p>
 <br>
+
+<!-- ADD SLACKER SECTION --> 
 <div class="add-section">
 <form action="app/add.php" method="POST" autocomplete="off">
              <?php if(isset($_GET['mess']) && $_GET['mess'] == 'error'){ ?>
@@ -71,12 +74,14 @@ echo '<p id="timer" style="font-size:30px;"></p>'
              <?php } ?>
           </form>
 </div>
+
+<!-- ADD DATA TO APP AND DATABASE --> 
 <?php 
     $slacker = $conn->query("SELECT * FROM slacker ORDER BY id DESC");
 ?>
 
 <div class="slacker-section">
-    <p>This is the section where all the slackers are recorded. If on the list, doctors are decided whether they want to help these patient or not. If there info is crossed off, it means they are in the process of paying fines or community services to get removed. If you are able to remove the slacker, hit the X button on the right of each slacker. </p>
+    <p>This is the section where all the slackers are recorded. If on the list, you are required to pay a fine. If there info is a check mark, it means they are a repeat offender. If you are able to remove the slacker, hit the X button on the right of each slacker. </p>
 <?php if($slacker->rowCount() <= 0){ ?>
 <div class="slacker-item">
 <div class="empty">
@@ -85,6 +90,8 @@ echo '<p id="timer" style="font-size:30px;"></p>'
 </div>
 <?php } ?>
 
+<!-- FETCH AND DISPLAY DATA -->
+
 <?php while($slackers = $slacker->fetch(PDO::FETCH_ASSOC)) { ?>
 
 <div class="slacker-item">
@@ -92,9 +99,9 @@ echo '<p id="timer" style="font-size:30px;"></p>'
     class="remove-slacker">x</span>
     <?php if($slackers['checked']){ ?>
         <input type="checkbox"
-        class="check-box"
+        class="check-box" 
         data-slacker-id="<?php echo $slackers['id']; ?>"
-        checked />
+        checked /> Repeat Offender
 <h2 class="checked"><?php echo $slackers['first_name'], ['last_name'], ['email'], ['store']?></h2>
 
 
@@ -109,6 +116,7 @@ echo '<p id="timer" style="font-size:30px;"></p>'
 
             <?php } ?>
         <br>
+        <!-- DATE WHEN SLACKER WAS ADDED -->
         <small>Added: <?php echo $slackers['date'] ?> </small>
 </div>
 <?php } ?>

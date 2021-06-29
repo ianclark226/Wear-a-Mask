@@ -1,3 +1,5 @@
+<!-- Normal database connection with PHPMyAdmin -->
+
 <?php 
 
 $sName = "localhost";
@@ -14,7 +16,8 @@ try {
   echo "Connection failed : ". $e->getMessage();
 }
 
-//Get Heroku ClearDB connection information
+// HEROKU ATTEMPTED CONNECTION
+
 // $cleardb_url      = parse_url(getenv("CLEARDB_DATABASE_URL"));
 // $cleardb_server   = $cleardb_url["host"];
 // $cleardb_username = $cleardb_url["user"];

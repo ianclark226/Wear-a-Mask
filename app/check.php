@@ -1,9 +1,13 @@
+
+
 <?php
 
 if(isset($_POST['id'])){
     require '../db.php';
 
     $id = $_POST['id'];
+
+    // IF CHECKED, IT WILL BE UPDATED ON THE APP ON REFRESH
     
 
     if(empty($id)){
